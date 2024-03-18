@@ -1,0 +1,35 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: bsc
+    source:
+      address: "0xDe142aCEA844B727BeB8747df49207693244Fba2"
+      abi: Contract
+      startBlock: 36523714
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BridgePlusFee
+        - BridgePlusRedeem
+        - BridgePlusSwap
+        - OwnershipTransferred
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: BridgePlusFee(address,uint256,address)
+          handler: handleBridgePlusFee
+        - event: BridgePlusRedeem(address,address,uint256)
+          handler: handleBridgePlusRedeem
+        - event: BridgePlusSwap(address,address,uint256,address,uint256,uint256,address,address,uint256,uint256)
+          handler: handleBridgePlusSwap
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/contract.ts

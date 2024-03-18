@@ -1,0 +1,45 @@
+type BridgePlusFee @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  fee: BigInt! # uint256
+  treasury: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BridgePlusRedeem @entity(immutable: true) {
+  id: Bytes!
+  receiver: Bytes! # address
+  dstToken: Bytes! # address
+  receiveToken: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BridgePlusSwap @entity(immutable: true) {
+  id: Bytes!
+  dstAddress: Bytes! # address
+  receiver: Bytes! # address
+  srcChainId: BigInt! # uint256
+  srcToken: Bytes! # address
+  amount: BigInt! # uint256
+  dstChainId: BigInt! # uint256
+  dstToken: Bytes! # address
+  receiveToken: Bytes! # address
+  bridgeType: BigInt! # uint256
+  basketId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
